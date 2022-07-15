@@ -1,0 +1,118 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #36393f;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+*{
+  font-family: "ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.title-text{
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.sub-title-text{
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #999
+}
+
+.label-text{
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 30px;
+  color: #999
+}
+
+.fine-print-text{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #777;
+}
+
+.link-text{
+  color: #00AFF4;
+  text-decoration: none;
+}
+
+.modal-inout-under-enter{
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.modal-inout-under-enter-active{
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 300ms ease-in-out;
+}
+
+.modal-inout-under-exit{
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.modal-inout-under-exit-active{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 300ms ease-in-out;
+}
+
+.modal-inout-over-enter{
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.modal-inout-over-enter-active{
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 300ms ease-in-out;
+}
+
+.modal-inout-over-exit{
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.modal-inout-over-exit-active{
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 300ms ease-in-out;
+}
