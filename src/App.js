@@ -13,6 +13,7 @@ import UserManager from './Pages/UserManager/UserManager';
 import Home from './Pages/Home/Home';
 
 import UserContext from './contexts/UserContext';
+import TeamContext from './contexts/TeamContext';
 
 const axios = require('axios');
 
@@ -54,27 +55,29 @@ function App() {
   return (
     <AnimatePresence exitBeforeEnter>
       <UserContext>
-        <div className="App-header" location={location} key={location.pathname}>
-          {allowedRoutes.includes(location.pathname) ? <SplashHeader /> : <Header />}
-          { loggedIn ?
-            <>
-              <div style={{marginTop: 60}}></div>
+        <TeamContext>
+          <div className="App-header" location={location} key={location.pathname}>
+            {allowedRoutes.includes(location.pathname) ? <SplashHeader /> : <Header />}
+            { loggedIn ?
+              <>
+                <div style={{marginTop: 60}}></div>
+                <Routes>
+                  <Route path='/' element={<Splash /> } />
+                  <Route path='/login' element={<Login /> } />
+                  <Route path='/register' element={<Register /> } />
+                  <Route path='/users' element={<UserManager /> } />
+                  <Route path='/home' element={<Home /> } />
+                </Routes>
+              </>
+              :
               <Routes>
                 <Route path='/' element={<Splash /> } />
                 <Route path='/login' element={<Login /> } />
                 <Route path='/register' element={<Register /> } />
-                <Route path='/users' element={<UserManager /> } />
-                <Route path='/home' element={<Home /> } />
               </Routes>
-            </>
-            :
-            <Routes>
-              <Route path='/' element={<Splash /> } />
-              <Route path='/login' element={<Login /> } />
-              <Route path='/register' element={<Register /> } />
-            </Routes>
-          }
-        </div>
+            }
+          </div>
+        </TeamContext>
       </UserContext>
     </AnimatePresence>
   );

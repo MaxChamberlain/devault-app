@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { context } from '../../contexts/UserContext';
+import { TeamsContext } from '../../contexts/TeamContext';
 const dropdown_arrow = require('../../assets/images/dropdown_arrow.png');
 const home_icon = require('../../assets/images/home_icon.png');
 
@@ -8,6 +9,7 @@ export default function Header() {
     const [ dropdown, setDropdown ] = useState(false);
 
     const userPerms = useContext(context);
+    const team = useContext(TeamsContext);
 
     return (
         <div style={{
@@ -19,6 +21,16 @@ export default function Header() {
             backgroundColor: '#24262a',
             zIndex: 9000
         }}>
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 50,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>{team[0] ? team[0].company_name : ''}</div>
             <div style={{ cursor: 'pointer', height: 50, color: '#ccc', fontSize: 15, position: 'absolute', right: 25, top: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             onClick={() => setDropdown(was => !was)}>
                 <span>Options</span>
