@@ -34,6 +34,8 @@ function App() {
     }
   }
 
+  const location = useLocation();
+
   useEffect(() => {
 
     checkToken()
@@ -47,9 +49,7 @@ function App() {
     else if(!loggedIn){
       location.pathname = '/';
     }
-  }, [allowedRoutes, location.pathname, loggedIn])
-
-    const location = useLocation();
+  }, [allowedRoutes, location, loggedIn])
 
   return (
     <AnimatePresence exitBeforeEnter>
