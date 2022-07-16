@@ -21,7 +21,7 @@ export default function TextInput({ label, width, id, placeholder, required, typ
     if(func){
         return <div style={{margin: 30}}>
             <div style={styles.label}>{label}</div>
-            <input type={type} placeholder={placeholder} id={id} style={styles.input} required={required} onChange={e => func(e)} />
+            <input type={type} placeholder={placeholder} id={id} style={styles.input} required={required}/>
         </div>
     }
     
