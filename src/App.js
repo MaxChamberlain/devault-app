@@ -7,6 +7,7 @@ import SplashHeader from './Components/Header/SplashHeader';
 import { AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Header from './Components/Header/Header';
 
 const axios = require('axios');
 
@@ -49,7 +50,7 @@ function App() {
   return (
     <AnimatePresence exitBeforeEnter>
       <div className="App-header" location={location} key={location.pathname}>
-        {location.pathname === '/' && <SplashHeader />}
+        {allowedRoutes.includes(location.pathname) ? <SplashHeader /> : <Header />}
         { loggedIn ?
           <Routes>
             <Route path='/' element={<Splash /> } />

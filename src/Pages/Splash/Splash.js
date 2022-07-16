@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+const logo = require('../../assets/images/lock-512.webp')
 
 export default function Splash(){
 
@@ -9,7 +10,19 @@ export default function Splash(){
     }, [])
     return (
         <div>
-            <h1>Splash</h1>
+            <div style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
+                <span>Welcome to DeVault</span>
+                <img src={logo} style={{
+                    filter: 'invert()',
+                    width: 30,
+                    marginLeft: 20
+                }} />
+            </div>
         </div>
     )
 }
