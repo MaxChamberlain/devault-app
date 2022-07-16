@@ -18,7 +18,6 @@ const axios = require('axios');
 
 function App() {
   const [ loggedIn, setLoggedIn ] = useState(false);
-  const [ permissions, setPermissions ] = useState(false);
 
   const allowedRoutes = ['/login', '/register', '/'];
 
@@ -48,7 +47,7 @@ function App() {
     else if(!loggedIn){
       location.pathname = '/';
     }
-  }, [])
+  }, [allowedRoutes, location.pathname, loggedIn])
 
     const location = useLocation();
 

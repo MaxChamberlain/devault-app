@@ -21,7 +21,7 @@ export default function Splash(){
                     filter: 'invert()',
                     width: 30,
                     marginLeft: 20
-                }} />
+                }} alt='' />
             </div>
         </div>
     )

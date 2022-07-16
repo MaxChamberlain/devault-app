@@ -22,11 +22,11 @@ export default function Header() {
             <div style={{ cursor: 'pointer', height: 50, color: '#ccc', fontSize: 15, position: 'absolute', right: 25, top: 10, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             onClick={() => setDropdown(was => !was)}>
                 <span>Options</span>
-                <img src={dropdown_arrow} style={{ width: 30, height: 20, filter: 'invert()' }} />
+                <img src={dropdown_arrow} style={{ width: 30, height: 20, filter: 'invert()' }} alt='' />
             </div>
             <div style={{ cursor: 'pointer', height: 50, color: '#ccc', fontSize: 15, position: 'absolute', left: 10, top: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             onClick={() => window.location.href = '/home'}>
-                <img src={home_icon} style={{ width: 40, height: 40, filter: 'invert()' }} />
+                <img src={home_icon} style={{ width: 40, height: 40, filter: 'invert()' }} alt='' />
             </div>
             <TransitionGroup component='div'>
                 {dropdown &&
