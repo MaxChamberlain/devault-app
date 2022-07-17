@@ -23,7 +23,7 @@ export default function TeamContext( { children }) {
     }
 
     useEffect(() => {
-        getTeamInfo();
+        if(JSON.parse(localStorage.getItem('_devault:@userInfo'))) getTeamInfo();
     }, [])
 
     return(

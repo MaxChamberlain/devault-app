@@ -10,20 +10,20 @@ export default function AddButton(){
             <motion.svg 
                 animate={{ rotate: adding ? -45 : 0 }}
                 style={{
-                    position: "absolute",
-                    top: 10,
+                    position: "fixed",
+                    top: 55,
                     right: 20,
                     zIndex: 100,
                     backgroundColor: 'hsl(235, 85.6%,64.7%)',
-                    height: 50,
-                    width: 50,
+                    height: 40,
+                    width: 40,
                     borderRadius: '100%',
                     cursor: 'pointer',
                 }}
                 onClick={() => setAdding(was => !was)}
             >
-                <line x1="25" y1="10" x2="25" y2="40" stroke="white" strokeWidth="5" strokeLinecap='round' />
-                <line x1="10" y1="25" x2="40" y2="25" stroke="white" strokeWidth="5" strokeLinecap='round' />
+                <line x1="20" y1="5" x2="20" y2="35" stroke="white" strokeWidth="5" strokeLinecap='round' />
+                <line x1="5" y1="20" x2="35" y2="20" stroke="white" strokeWidth="5" strokeLinecap='round' />
             </motion.svg>
             {adding && <DeviceInputForm />}
         </div>

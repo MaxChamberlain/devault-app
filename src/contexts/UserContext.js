@@ -23,7 +23,7 @@ export default function UserContext( { children }) {
     }
 
     useEffect(() => {
-        getPerms();
+        if(JSON.parse(localStorage.getItem('_devault:@user_info'))) getPerms();
     }, [])
 
     return(

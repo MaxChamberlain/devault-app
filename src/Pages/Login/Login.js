@@ -1,6 +1,5 @@
 import './Login.css';
 import { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import useLoading from '../../Hooks/useLoading';
 const axios = require('axios');
 
@@ -29,16 +28,12 @@ export default function Login() {
                         alignItems: 'center',
                     }}
                 >
-                    <motion.div 
+                    <div 
                         className="main-content-wrapper"
-                        initial={{ y: 100, opacity: 0, scale: 0.9 }}
-                        exit={{ y: 100, opacity: 0, scale: 0.9 }}
-                        animate={{ y: "0", opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.2, type: 'tween' }}
                     >
                         <div className="title-text">Welcome back!</div>
                         <div className="sub-title-text">We're happy you're here!</div>
-                        <form className='input-form' onSubmit={e => login(e, document.getElementById('email-input').value, document.getElementById('password-input').value, )} >
+                        <form className='input-form' onSubmit={e => login(e, document.getElementById('email-input').value.toLowerCase(), document.getElementById('password-input').value, )} >
                             <div className="input-wrapper">
                                 <div className='label-text'>EMAIL ADDRESS</div>
                                 <input type="text" id='email-input' className='input-box'  />
@@ -48,7 +43,7 @@ export default function Login() {
                             </div>
                         </form>
                         <div className="fine-print-text" style={{marginTop: 170}}>Need an account? <a className='link-text' href='/register'>Register</a></div>
-                    </motion.div>
+                    </div>
                 </div>
         //     </CSSTransition>
         // </TransitionGroup>

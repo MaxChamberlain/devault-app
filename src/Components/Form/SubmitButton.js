@@ -1,4 +1,4 @@
-export default function SubmitButton({ label, func }){
+export default function SubmitButton({ label }){
 
     const styles = {
         width: '100%',

@@ -35,6 +35,11 @@
 
 *{
   font-family: "ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif;
+  transition: opacity 0.2s ease-in-out;
+}
+
+div{
+  animation: height 0.2s ease-in-out;
 }
 
 .title-text{

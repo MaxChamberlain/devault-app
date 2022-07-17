@@ -5,13 +5,13 @@ export default function DeviceInputForm(){
         <div
             style={{
                 position: "absolute",
-                top: 0,
+                top: 20,
                 left: 0,
                 right: 0,
                 bottom: 0,
                 display: 'flex',
                 justifyContent: 'center',
-                alignItems: 'center',
+                alignItems: 'flex-start',
                 padding: 20,
             }}
         >

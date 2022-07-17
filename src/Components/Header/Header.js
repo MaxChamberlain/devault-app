@@ -60,11 +60,25 @@ export default function Header() {
                                 border: '1px solid #ccc',
                                 borderRadius: 5,
                                 cursor: 'pointer',
+                                textAlign: 'center',
                             }}
                             onClick={() => window.location.href = '/users'}
                             >
                                 Manage Users
                             </div>}
+                            <div style={{
+                                padding: 10,
+                                marginTop: 10,
+                                backgroundColor: 'rgba(0,0,0,0.1)',
+                                border: '1px solid rgb(176, 51, 42)',
+                                borderRadius: 5,
+                                cursor: 'pointer',
+                                textAlign: 'center',
+                            }}
+                            onClick={() => {localStorage.removeItem('_devault:@user_info'); window.location.href = '/'}}
+                            >
+                                Logout
+                            </div>
                         </div>
                     </CSSTransition>
                 }

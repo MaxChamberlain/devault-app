@@ -26,7 +26,9 @@ export default function Login() {
             justifyContent: 'center',
             alignItems: 'center',
         }}>
-            <div className="main-content-wrapper">
+            <div className="main-content-wrapper"
+            style={ window.innerWidth > 1080 ? { width: 750 } : { width: 'fit-content' } }
+            >
                 <div className="title-text">Create an account</div>
                 <form className='input-form' onSubmit={e => {e.preventDefault(); document.getElementById('password-input').value === document.getElementById('confirm-password-input').value ? createAccount( e, document.getElementById('email-input').value, document.getElementById('name-input').value, document.getElementById('password-input').value, document.getElementById('company-code-input'), document.getElementById('company-name') ) : setLoading(['error', 'Password and Confirm Password do not match!'])}}>
                     <div className="input-wrapper">

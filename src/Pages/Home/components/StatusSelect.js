@@ -2,16 +2,15 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 const dropdown_arrow = require("../../../assets/images/dropdown_arrow.png")
 
-export default function CategorySelect({ devices, currCategory, setCategory }){
+export default function StatusSelect({ currStatus, setStatus }){
     const [ open, setOpen ] = useState(false);
-    const categories = ['All', ...new Set(devices.map(device => device.category))];
 
     return(
         <div style={{ margin: '10px 0' }}>
-            <div style={{ marginLeft: 15, marginBottom: -10, fontSize: 22, opacity: 0.6, fontWeight: 640, letterSpacing: 1}}
+            <div style={{  marginLeft: 35, marginBottom: -10, fontSize: 22, opacity: 0.6, fontWeight: 640, letterSpacing: 1}}
                 onClick={() => setOpen(was => !was)} 
             >
-                CATEGORY
+                STATUS 
                 <motion.img 
                     src={dropdown_arrow} 
                     animate={{ rotate: open ? 180 : 0, duration: 0.1 }}
@@ -28,19 +27,19 @@ export default function CategorySelect({ devices, currCategory, setCategory }){
                 backgroundColor: 'rgba(0,0,0,0.2)',
                 boxShadow: 'inset 0 0 5px 5px rgba(0,0,0,0.2)',
                 width: 'fit-content',
-            }}> 
-                {open && categories.map((category, index) => {
+            }}>
+                {open && ['All', 'Checked Out', 'Damaged', 'Reserved', 'Available', 'Requested'].map((status, index) => {
                     return <div style={{
                         cursor: 'pointer',
-                        backgroundColor: category === currCategory ? 'hsl(235, 85.6%,64.7%)' : 'transparent',
+                        backgroundColor: status === currStatus ? 'hsl(235, 85.6%,64.7%)' : 'transparent',
                         padding: 5,
                         borderRadius: 5,
-                        outline: category === currCategory ? 'none' : '1px solid hsl(235, 85.6%,64.7%)',
+                        outline: status === currStatus ? 'none' : '1px solid hsl(235, 85.6%,64.7%)',
                         margin: 10,
                         fontSize: 22
                     }}
-                    onClick={() => setCategory(category)}
-                    >{category}</div>
+                    onClick={() => setStatus(status)}
+                    >{status}</div>
                 })}
             </div>
         </div>

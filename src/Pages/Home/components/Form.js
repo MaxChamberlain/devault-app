@@ -19,8 +19,9 @@ export default function Form(){
             borderRadius: 10,
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'flex-start',
             alignItems: 'center',
-            boxShadow: '0 0 10px 10px rgba(0,0,0,0.5)',
+            boxShadow: '0 0 100px 100px rgba(0,0,0,0.5)',
         }}>
             <span style={{ justifySelf: 'center' }}>Add a new device</span>
             <form onSubmit={e => handleSubmit(e)}>
