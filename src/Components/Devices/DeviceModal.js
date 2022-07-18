@@ -46,6 +46,7 @@ export default function DeviceModal({ device, getDevices }){
                 borderRadius: 5,
                 position: 'relative',
                 backgroundOpacity: 0.9,
+                boxShadow: '0px 0px 5px 5px rgba(0,0,0,0.2)',
             }}
         >
             <SerialDisplay serial={device.serial} />
@@ -67,7 +68,7 @@ export default function DeviceModal({ device, getDevices }){
             )}
             {checkingOut && <CheckingOutModal serial={checkingOut} checkOut={checkOut} />}
             {isOpen && <OptionsDisplay options={device.options} />}
-            {isOpen && <MoreOptions />}
+            {isOpen && <MoreOptions id={device._id} deleteItem={deleteItem} />}
             <OpenArrow click={setIsOpen} isActive={isOpen} />
         </AnimateHeight>
     )
@@ -138,4 +139,22 @@ export default function DeviceModal({ device, getDevices }){
             console.log(err)
         }
     }
+
+    async function deleteItem(_id){
+        const company_code = JSON.parse(localStorage.getItem('_devault:@user_info')).company_code
+        try{
+            setLoading(['loading', 'Deleting...'])
+            axios.post(
+                process.env.REACT_APP_API_DOMAIN + '/devices/delete',
+                { _id, company_code },
+                { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
+            )
+            setLoading(['success', 'Deleted!'])
+            getDevices()
+        }catch(err){
+            setLoading(['error', err.response.data.message])
+            console.log(err)
+        }
+    }
+    
 } 

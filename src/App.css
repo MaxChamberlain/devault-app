@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+@font-face{
+  font-family: 'PP-Mori';
+  src: url("./assets/fonts/PPMori-Regular.otf") format("opentype");
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -34,7 +39,8 @@
 }
 
 *{
-  font-family: "ABC Ginto Normal","Helvetica Neue",Helvetica,Arial,sans-serif;
+  /* font-family: "Ginto Nord","Whitney","Helvetica Neue","Helvetica","Arial",sans-serif; */
+  font-family: PP-Mori;
   transition: opacity 0.2s ease-in-out;
 }
 

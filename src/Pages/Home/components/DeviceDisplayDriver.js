@@ -8,8 +8,8 @@ export default function DeviceDisplayDriver({ devices, category, status, make, s
             gridTemplateColumns: 'repeat(auto-fit, 350px)',
             justifyContent: 'center',
             alignItems: 'flex-start',
-            padding: 20,
-            gridGap: 20,
+            padding: 15,
+            gridGap: 15,
         }}>
             {devices[0] !== undefined && devices
                 .filter(e => e.category === category || category === 'All')

@@ -29,7 +29,7 @@ export default function SerialDisplay({ serial }){
             <img src={copied ? checkmark : copy_icon} style={{
                 position: 'absolute',
                 right: 5,
-                top: 5,
+                top: 2.5,
                 cursor: 'pointer',
                 width: 15,
                 height: 15,

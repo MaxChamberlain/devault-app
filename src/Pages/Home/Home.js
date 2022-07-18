@@ -13,6 +13,7 @@ export default function Home(){
     const [ make, setMake ] = useState('All');
     const [ serial, setSerial ] = useState(null);
     const [ searching, setSearching ] = useState(false);
+    const [ width, setWidth ] = useState(window.innerWidth);
 
     const getDevices = async () => {
         const { data } = await axios.post(
@@ -34,6 +35,9 @@ export default function Home(){
                 setSearching(was => !was)
             }
         })
+        window.addEventListener('resize', () => {
+            setWidth(window.innerWidth)
+        })
     }, [])
 
     return(
@@ -46,11 +50,12 @@ export default function Home(){
         }}>
             {devices.length > 0 ? 
                 <>
-                    <div style={{ display: 'flex', }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                         <SearchBar serial={serial} setSerial={setSerial} searching={searching} setSearching={setSearching} />
                         <Refresh click={getDevices} />
+                        {window.innerWidth > 1080 && <Filters devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />}
                     </div>
-                    <Filters devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />
+                    {window.innerWidth < 1080 && <Filters devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />}
                     <DeviceDisplayDriver devices={devices} category={category} status={status} serial={serial} getDevices={getDevices} make={make} />
                 </>
                 :
