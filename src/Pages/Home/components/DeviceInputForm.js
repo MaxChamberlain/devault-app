@@ -1,8 +1,9 @@
+import { TransitionGroup } from 'react-transition-group'
 import Form from './Form'
 
 export default function DeviceInputForm(){
     return(
-        <div
+        <TransitionGroup component='div'
             style={{
                 position: "absolute",
                 top: 20,
@@ -16,6 +17,6 @@ export default function DeviceInputForm(){
             }}
         >
             <Form />
-        </div>
+        </TransitionGroup>
     )
 }

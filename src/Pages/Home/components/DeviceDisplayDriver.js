@@ -1,4 +1,5 @@
 import DeviceModal from "../../../Components/Devices/DeviceModal"
+import { CSSTransition } from "react-transition-group";
 
 export default function DeviceDisplayDriver({ devices, category, status, make, serial, getDevices }){
 
@@ -42,7 +43,9 @@ export default function DeviceDisplayDriver({ devices, category, status, make, s
                     return 0;
                 })
                 .map((device, index) => {
-                    return <DeviceModal device={device} getDevices={getDevices} />
+                    return <CSSTransition in={devices} timeout={200} classNames="modal-fade">
+                    <DeviceModal device={device} getDevices={getDevices} />
+                    </CSSTransition>
                 })
             }
         </div>

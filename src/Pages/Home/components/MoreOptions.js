@@ -1,9 +1,11 @@
+import { CSSTransition } from "react-transition-group"
 import { useState } from "react"
 
-export default function MoreOptions({ id, deleteItem }){
+export default function MoreOptions({ id, deleteItem, changeCategory }){
     const [ isOpen, setIsOpen ] = useState(false)
     const [ changingCategory, setChangingCategory ] = useState(false)
     const [ newCategory, setNewCategory ] = useState(null)
+    const [ confirm, setConfirm ] = useState(false)
     
     return(
         <div style={{
@@ -25,14 +27,18 @@ export default function MoreOptions({ id, deleteItem }){
                 width: '95%',
                 textAlign: 'center',
                 cursor: 'pointer',
-                backgroundColor: 'rgba(0,0,0,0.2)',
+                backgroundColor: changingCategory ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0.2)',
                 margin: 10,
                 marginTop: 0,
                 marginBottom: 0
             }}
-            onClick={() => setIsOpen(was => !was)}
+            onClick={!changingCategory ? () => setIsOpen(was => !was) : () => {
+                changeCategory(id, newCategory)
+                setChangingCategory(false)
+                setNewCategory(null)
+            }}
             >
-                {isOpen ? 'Close' : 'More Options...'}
+                {isOpen ? changingCategory ? 'Save' : 'Close' : 'More Options...'}
             </div> 
             {isOpen && <div style={{
                 padding: 5,
@@ -77,8 +83,13 @@ export default function MoreOptions({ id, deleteItem }){
                 margin: 5,
                 marginTop: 10,
             }}
-            onClick={() => deleteItem(id)}>
-                Delete Item
+            onClick={confirm ? () => deleteItem(id) : () => {
+                setConfirm(3)
+                setTimeout(() => setConfirm(2), 1000)
+                setTimeout(() => setConfirm(1), 2000)
+                setTimeout(() => setConfirm(false), 3000)
+            }}>
+                {confirm ? `Confirm (${confirm})` : 'Delete'}
             </div> 
             }
         </div>

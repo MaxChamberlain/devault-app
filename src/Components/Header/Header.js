@@ -43,7 +43,7 @@ export default function Header() {
                     <img src={home_icon} style={{ width: 30, height: 30, filter: 'invert()', opacity: location.pathname === '/home' ? 1 : .5 }} alt='' onClick={() => window.location.href = '/home'} />
                     <span style={{ fontSize: 15, cursor: 'pointer', opacity: location.pathname === '/home' ? 1 : .5 }} onClick={() => window.location.href = '/home'} >Home</span>
                 </div>
-                <span style={{ fontSize: 25, marginLeft: 20, cursor: 'pointer', opacity: location.pathname === '/overview' ? 1 : .5 }} onClick={() => window.location.href = '/overview'} >Overview</span>
+                {/* <span style={{ fontSize: 25, marginLeft: 20, cursor: 'pointer', opacity: location.pathname === '/overview' ? 1 : .5 }} onClick={() => window.location.href = '/overview'} >Overview</span> */}
             </div>
             <TransitionGroup component='div'>
                 {dropdown &&

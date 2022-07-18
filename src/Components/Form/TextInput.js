@@ -1,4 +1,8 @@
+import { Autocomplete, Stack, TextField } from "@mui/material"
+
 export default function TextInput({ label, width, id, placeholder, required, type, func }){
+
+    const test = ['test1', 'test2']
 
     const styles = {
         input:{
@@ -24,7 +28,6 @@ export default function TextInput({ label, width, id, placeholder, required, typ
             <input type={type} placeholder={placeholder} id={id} style={styles.input} required={required}/>
         </div>
     }
-    
     return <div style={{margin: 30}}>
         <div style={styles.label}>{label}</div>
         <input type={type} placeholder={placeholder} id={id} style={styles.input} required={required} />

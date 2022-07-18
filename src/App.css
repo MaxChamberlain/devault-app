@@ -41,11 +41,7 @@
 *{
   /* font-family: "Ginto Nord","Whitney","Helvetica Neue","Helvetica","Arial",sans-serif; */
   font-family: PP-Mori;
-  transition: opacity 0.2s ease-in-out;
-}
-
-div{
-  animation: height 0.2s ease-in-out;
+  animation-duration: color 200ms;
 }
 
 .title-text{
@@ -122,4 +118,38 @@ div{
   opacity: 0;
   transform: translateY(20px);
   transition: all 300ms ease-in-out;
+}
+
+.modal-fade-enter{
+  opacity: 0;
+}
+.modal-fade-enter-active{
+  opacity: 1;
+  transition: all 200ms ease-in-out;
+}
+.modal-fade-exit{
+  opacity: 1;
+}
+.modal-fade-exit-active{
+  opacity: 0;
+  transition: all 200ms ease-in-out;
+}
+
+.modal-scale-opacity-enter{
+  transform: scale(0.7);
+  opacity: 0;
+}
+.modal-scale-opacity-enter-active{
+  transform: scale(1);
+  opacity: 1;
+  transition: all 300ms ease-in-out !important;
+}
+.modal-scale-opacity-exit{
+  transform: scale(1);
+  opacity: 1;
+}
+.modal-scale-opacity-exit-active{
+  transform: scale(0.7);
+  opacity: 0;
+  transition: all 300ms ease-in-out !important;
 }

@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import DeviceInputForm from "./DeviceInputForm"
+import { CSSTransition } from "react-transition-group";
 
 export default function AddButton(){
     const [ adding, setAdding ] = useState(false);
@@ -25,7 +26,7 @@ export default function AddButton(){
                 <line x1="20" y1="5" x2="20" y2="35" stroke="white" strokeWidth="5" strokeLinecap='round' />
                 <line x1="5" y1="20" x2="35" y2="20" stroke="white" strokeWidth="5" strokeLinecap='round' />
             </motion.svg>
-            {adding && <DeviceInputForm />}
+            <CSSTransition in={adding} unmountOnExit timeout={200} classNames="modal-inout-over"><DeviceInputForm /></CSSTransition>
         </div>
     )
 }
