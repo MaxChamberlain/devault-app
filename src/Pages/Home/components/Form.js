@@ -30,7 +30,7 @@ export default function Form(){
                 <TextInput label='Device Variant' id='device_variant' placeholder='Macbook Pro' required={true} />
                 <TextInput label='Device Serial' id='device_serial' placeholder='123456789' required={true} />
                 <TextInput label='Device Category' id='device_category' placeholder='Warehouse' required={true} />
-                <div style={{ textAlign: 'center' }}>Options:</div>
+                <div style={{ textAlign: 'center' }}>Tags:</div>
                 <div style={{
                     display: 'flex',
                     justifyContent: 'space-around',

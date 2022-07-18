@@ -2,8 +2,13 @@ export default function DeviceLabel({ model, variant, owner }){
 
     const images = {
         macbook: 'https://support.apple.com/content/dam/edam/applecare/images/en_US/psp_content/content-block-md-macos_2x.png',
-        imac: 'http://assets.stickpng.com/images/580b57fbd9996e24bc43bfe1.png',
-        iphone: 'https://www.freeiconspng.com/thumbs/iphone-6-png/white-iphone-6-png-image-22.png'
+        imac: 'https://www.pngmart.com/files/22/Imac-PNG-Transparent.png',
+        iphone: 'https://www.freeiconspng.com/thumbs/iphone-6-png/white-iphone-6-png-image-22.png',
+        ipad: 'https://clipart.world/wp-content/uploads/2020/08/ipad-pro-png-transparent.png',
+        "magic keyboard": 'https://freepngimg.com/save/63174-vector-magic-apple-painted-bluetooth-wireless-computer/1334x703',
+        'magic trackpad': 'https://www.pngkey.com/png/full/80-800037_apple-magic-trackpad-apple-magic-trackpad-bluetooth-trackpad.png',
+        'magic mouse': 'https://dlb99j1rm9bvr.cloudfront.net/apple-magic-mouse/parts/angle-1/model/size-1000/bg.png',
+        'socket mobile s700 series': 'https://cdn.shopify.com/s/files/1/0553/3925/products/socketscan-s700-linear-barcode-scanner-barcode-scanner-794573.png?v=1649346406'
     }
 
     return(

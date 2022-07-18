@@ -10,6 +10,7 @@ export default function CheckingOutModal({ serial, checkOut }){
             borderRadius: 5,
             padding: 10,
             textAlign: 'center',
+            marginBottom: 20,
         }}
         onSubmit={(e) => {
             e.preventDefault();

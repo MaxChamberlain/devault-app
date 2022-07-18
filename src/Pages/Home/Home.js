@@ -3,12 +3,14 @@ import Filters from "./components/Filters";
 import AddButton from "./components/AddButton";
 import DeviceDisplayDriver from "./components/DeviceDisplayDriver";
 import SearchBar from "./components/SearchBar";
+import Refresh from "./components/Refresh";
 const axios = require("axios");
 
 export default function Home(){
     const [ devices, setDevices ] = useState([]);
     const [ category, setCategory ] = useState('All');
     const [ status, setStatus ] = useState('All');
+    const [ make, setMake ] = useState('All');
     const [ serial, setSerial ] = useState(null);
     const [ searching, setSearching ] = useState(false);
 
@@ -44,9 +46,12 @@ export default function Home(){
         }}>
             {devices.length > 0 ? 
                 <>
-                    <SearchBar devices={devices} setSerial={setSerial} searching={searching} setSearching={setSearching} />
-                    <Filters devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} />
-                    <DeviceDisplayDriver devices={devices} category={category} status={status} serial={serial} getDevices={getDevices} />
+                    <div style={{ display: 'flex', }}>
+                        <SearchBar serial={serial} setSerial={setSerial} searching={searching} setSearching={setSearching} />
+                        <Refresh click={getDevices} />
+                    </div>
+                    <Filters devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />
+                    <DeviceDisplayDriver devices={devices} category={category} status={status} serial={serial} getDevices={getDevices} make={make} />
                 </>
                 :
                 <div>

@@ -8,8 +8,7 @@ export default function OpenArrow({ click, isActive }){
             bottom: 5,
             width: 30,
             filter: 'invert()',
-            left: '50%',
-            transform: 'translateX(-50%)',
+            left: 160,
             cursor: 'pointer',
         }} 
         onClick={() => click(was => !was)}

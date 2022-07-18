@@ -1,6 +1,6 @@
 import DeviceModal from "../../../Components/Devices/DeviceModal"
 
-export default function DeviceDisplayDriver({ devices, category, status, serial, getDevices }){
+export default function DeviceDisplayDriver({ devices, category, status, make, serial, getDevices }){
 
     return(
         <div style={{
@@ -11,8 +11,8 @@ export default function DeviceDisplayDriver({ devices, category, status, serial,
             padding: 20,
             gridGap: 20,
         }}>
-            {devices
-                .filter(e => category === 'All' ? e : e.category === category)
+            {devices[0] !== undefined && devices
+                .filter(e => e.category === category || category === 'All')
                 .filter(e => {
                     if(status === 'All') return e;
                     if(status === 'Checked Out') return e.checked_out;
@@ -24,6 +24,7 @@ export default function DeviceDisplayDriver({ devices, category, status, serial,
                 .filter(e => {
                     return serial === null ? e : e.serial.includes(serial)
                 })
+                .filter(e => e.make === make || make === 'All')
                 .sort((a, b) => {
                     // sort by reserved, then requested, then checked out, then damaged
                     if(a.reserved && !b.reserved) return -1;

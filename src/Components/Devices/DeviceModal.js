@@ -4,6 +4,8 @@ import OpenArrow from "./OpenArrow"
 import SerialDisplay from "./SerialDisplay"
 import CheckingOutModal from "../../Pages/Home/components/CheckingOutModal"
 import AnimateHeight from "react-animate-height"
+import OptionsDisplay from "../../Pages/Home/components/OptionsDisplay"
+import MoreOptions from "../../Pages/Home/components/MoreOptions"
 import { context } from "../../contexts/UserContext"
 import CheckOutButton from "../../Pages/Home/components/CheckOutButton"
 import { useState, useContext, useEffect } from "react"
@@ -39,7 +41,7 @@ export default function DeviceModal({ device, getDevices }){
             height={isOpen ? 'auto' : 110}
             style={{
                 padding: 10,
-                paddingBottom: 50,
+                paddingBottom: 20,
                 backgroundColor: modalBg,
                 borderRadius: 5,
                 position: 'relative',
@@ -64,6 +66,8 @@ export default function DeviceModal({ device, getDevices }){
                     <CheckOutButton text='Request' func={() => request(device.serial)} />
             )}
             {checkingOut && <CheckingOutModal serial={checkingOut} checkOut={checkOut} />}
+            {isOpen && <OptionsDisplay options={device.options} />}
+            {isOpen && <MoreOptions />}
             <OpenArrow click={setIsOpen} isActive={isOpen} />
         </AnimateHeight>
     )

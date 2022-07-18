@@ -1,10 +1,11 @@
 import CategorySelect from "./CategorySelect";
 import StatusSelect from "./StatusSelect";
+import MakeSelect from "./MakeSelect";
 import { useState } from "react";
 
 const filter_icon = require("../../../assets/images/filter_icon.png");
 
-export default function Filters({ devices, category, status, setCategory, setStatus }){
+export default function Filters({ devices, category, status, setCategory, setStatus, make, setMake }){
     const [ show, setShow ] = useState(false);
     return(
         <div>
@@ -38,15 +39,17 @@ export default function Filters({ devices, category, status, setCategory, setSta
                         Filters
                         <img src={filter_icon} alt="filter" style={{ height: 30, filter: 'invert()' }} />
                     </div>
-                    {(category !== 'All' || status !== 'All') && <span style={{margin: '0 10px', cursor: 'pointer', fontSize: 25}}
+                    {(category !== 'All' || status !== 'All' || make !== 'All') && <span style={{margin: '0 10px', cursor: 'pointer', fontSize: 25}}
                     onClick={() => {
                         setCategory('All');
                         setStatus('All');
+                        setMake('All');
                     }}>x</span>}
                 </div>
                 {show && <>
                     <CategorySelect devices={devices} currCategory={category} setCategory={setCategory} />
                     <StatusSelect devices={devices} currStatus={status} setStatus={setStatus} />
+                    <MakeSelect devices={devices} currMake={make} setMake={setMake} />
                 </>}
             </div>
         </div>

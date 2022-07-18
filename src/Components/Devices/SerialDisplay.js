@@ -13,7 +13,7 @@ export default function SerialDisplay({ serial }){
                 alignItems: 'center',
                 width: 'calc(100% + 20px)',
                 backgroundColor: 'rgba(0,0,0,0.4)',
-                fontSize: 20,
+                fontSize: 15,
                 padding: '2px 0',
                 borderRadius: 5,
                 position: 'relative',
@@ -31,8 +31,8 @@ export default function SerialDisplay({ serial }){
                 right: 5,
                 top: 5,
                 cursor: 'pointer',
-                width: 20,
-                height: 20,
+                width: 15,
+                height: 15,
                 filter: 'invert()',
             }} onClick={copy} />
         </div>

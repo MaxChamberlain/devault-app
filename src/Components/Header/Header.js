@@ -2,11 +2,13 @@ import { useState, useContext } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { context } from '../../contexts/UserContext';
 import { TeamsContext } from '../../contexts/TeamContext';
+const { useLocation } = require('react-router-dom');
 const dropdown_arrow = require('../../assets/images/dropdown_arrow.png');
 const home_icon = require('../../assets/images/home_icon.png');
 
 export default function Header() {
     const [ dropdown, setDropdown ] = useState(false);
+    const location = useLocation();
 
     const userPerms = useContext(context);
     const team = useContext(TeamsContext);
@@ -36,9 +38,12 @@ export default function Header() {
                 <span>Options</span>
                 <img src={dropdown_arrow} style={{ width: 30, height: 20, filter: 'invert()' }} alt='' />
             </div>
-            <div style={{ cursor: 'pointer', height: 50, color: '#ccc', fontSize: 15, position: 'absolute', left: 10, top: 5, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-            onClick={() => window.location.href = '/home'}>
-                <img src={home_icon} style={{ width: 40, height: 40, filter: 'invert()' }} alt='' />
+            <div style={{ cursor: 'pointer', height: 40, color: '#ccc', fontSize: 15, position: 'absolute', left: 10, top: 5, display: 'flex', alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <img src={home_icon} style={{ width: 30, height: 30, filter: 'invert()', opacity: location.pathname === '/home' ? 1 : .5 }} alt='' onClick={() => window.location.href = '/home'} />
+                    <span style={{ fontSize: 15, cursor: 'pointer', opacity: location.pathname === '/home' ? 1 : .5 }} onClick={() => window.location.href = '/home'} >Home</span>
+                </div>
+                <span style={{ fontSize: 25, marginLeft: 20, cursor: 'pointer', opacity: location.pathname === '/overview' ? 1 : .5 }} onClick={() => window.location.href = '/overview'} >Overview</span>
             </div>
             <TransitionGroup component='div'>
                 {dropdown &&

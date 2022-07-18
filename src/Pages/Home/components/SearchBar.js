@@ -1,7 +1,7 @@
 import { useState } from "react";
 const search_icon = require("../../../assets/images/search_icon.png");
 
-export default function SearchBar({ devices, setSerial, searching, setSearching }){
+export default function SearchBar({ serial, setSerial, searching, setSearching }){
     return(
         <div style={{
             display: "flex",
@@ -31,7 +31,11 @@ export default function SearchBar({ devices, setSerial, searching, setSearching 
                     onChange={(e) => {
                         setSerial(e.target.value)
                     }}
+                    id='search_serial_input'
                 />
+            }
+            {serial &&
+                <span style={{ marginLeft: 20, cursor: 'pointer' }} onClick={() => {setSerial(null); document.getElementById('search_serial_input').value = ''}} >x</span>
             }
         </div>
     )
