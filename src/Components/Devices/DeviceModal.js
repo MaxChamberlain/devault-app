@@ -67,7 +67,7 @@ export default function DeviceModal({ device, getDevices }){
                 </CSSTransition>
                 <CSSTransition in={checkingOut} unmountOnExit timeout={200} classNames='modal-fade' ><CheckingOutModal serial={checkingOut} checkOut={checkOut} /></CSSTransition>
                 <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><OptionsDisplay options={device.options} /></CSSTransition>
-                {perms && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><MoreOptions id={device._id} deleteItem={deleteItem} changeCategory={changeCategory} /></CSSTransition>}
+                {perms && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><MoreOptions serial={device.serial} id={device._id} deleteItem={deleteItem} changeCategory={changeCategory} /></CSSTransition>}
                 <OpenArrow click={setIsOpen} isActive={isOpen} />
             </div>
     )

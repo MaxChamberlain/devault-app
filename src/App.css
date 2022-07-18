@@ -7,6 +7,11 @@
   src: url("./assets/fonts/PPMori-Regular.otf") format("opentype");
 }
 
+@font-face{
+  font-family: 'code128';
+  src: url("./assets/fonts/code128.ttf");
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -42,6 +47,10 @@
   /* font-family: "Ginto Nord","Whitney","Helvetica Neue","Helvetica","Arial",sans-serif; */
   font-family: PP-Mori;
   animation-duration: color 200ms;
+}
+
+.barcode{
+  font-family: code128;
 }
 
 .title-text{
