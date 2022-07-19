@@ -19,7 +19,8 @@ export default function Login() {
             top: 0,
             left: 0,
             right: 0,
-            bottom: 0,
+            bottom: window.innerWidth > 1080 ? 0 : '',
+            padding: window.innerWidth > 1080 ? '' : 80,
             backgroundColor: '#5865F2',
             display: 'flex',
             flexDirection: 'column',
@@ -27,7 +28,9 @@ export default function Login() {
             alignItems: 'center',
         }}>
             <div className="main-content-wrapper"
-            style={ window.innerWidth > 1080 ? { width: 750 } : { width: 'fit-content' } }
+            style={{
+                width: window.innerWidth > 1080 ? 720 : '80vw',
+            }}
             >
                 <div className="title-text">Create an account</div>
                 <form className='input-form' onSubmit={e => {e.preventDefault(); document.getElementById('password-input').value === document.getElementById('confirm-password-input').value ? createAccount( e, document.getElementById('email-input').value, document.getElementById('name-input').value, document.getElementById('password-input').value, document.getElementById('company-code-input'), document.getElementById('company-name') ) : setLoading(['error', 'Password and Confirm Password do not match!'])}}>
@@ -43,22 +46,22 @@ export default function Login() {
                         <br />
                         <br />
                         <div style={{ textAlign: 'center', color: 'white' }} className='label-text'>Enter a team code below to join an existing team, or leave blank to create a new one</div>
-                        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', width: '100%' }}>
                             <div>
-                                <div className='label-text' style={{ width: '14em', marginLeft: '50%', transform: 'translateX(-50%)' }}>TEAM CODE (optional)</div>
-                                <input className='input-box' id='company-code-input' style={{ width: '8em', marginLeft: '50%', transform: 'translateX(-50%)' }} onChange={e => setCompanyCode(e.target.value)} />
+                                <div className='label-text' style={{ width: '14em', marginLeft: '50%', transform: 'translateX(-50%)', fontSize: window.innerWidth > 1080 ? 15 : 10 }}>TEAM CODE (optional)</div>
+                                <input className='input-box' id='company-code-input' style={{ width: window.innerWidth > 1080 ? '8em' : '5em', marginLeft: '50%', transform: 'translateX(-50%)' }} onChange={e => setCompanyCode(e.target.value)} />
                             </div>
                             {companyCode === '' && 
                             <div>
-                                <div className='label-text' style={{ width: '14em', marginLeft: '50%', transform: 'translateX(-50%)' }}>TEAM NAME</div>
-                                <input className='input-box' id='company-name' style={{ width: '8em', marginLeft: '50%', transform: 'translateX(-50%)' }} required />
+                                <div className='label-text' style={{ width: '14em', marginLeft: '50%', transform: 'translateX(-50%)', fontSize: window.innerWidth > 1080 ? 15 : 10 }}>TEAM NAME</div>
+                                <input className='input-box' id='company-name' style={{ width: window.innerWidth > 1080 ? '8em' : '5em', marginLeft: '50%', transform: 'translateX(-50%)' }} required />
                             </div>
                             }
                         </div>
                         <input type="submit" className='input-button' value='Register' />
                     </div>
                 </form>
-                <div className="fine-print-text" style={{marginTop: 450}}><a className='link-text' href='/login'>Already have an account?</a></div>
+                <div className="fine-print-text" style={{marginTop: window.innerWidth > 1080 ? 450 : 550}}><a className='link-text' href='/login'>Already have an account?</a></div>
             </div>
         </div>
     );

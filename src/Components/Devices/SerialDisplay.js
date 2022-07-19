@@ -23,7 +23,7 @@ export default function SerialDisplay({ serial }){
                 marginLeft: -10,
                 marginTop: -10,
             }}
-            onClick={() => copy(serial)}
+            onPointerDown={() => copy(serial)}
         >
             {copied ? 'Serial Copied!' : `SN ${serial}`}
             <img src={copied ? checkmark : copy_icon} style={{

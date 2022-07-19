@@ -75,7 +75,7 @@ export default function MoreOptions({ addOption, serial, id, deleteItem, changeC
                     <div
                         style={{ height: '100%', width: '50%', backgroundColor: '#32a852'}}
                         onClick={() => {
-                            if(document.getElementById('new_tag_input').value){
+                            if(document.getElementById('new_tag_input')){
                                 addOption(id, document.getElementById('new_tag_input').value)
                                 document.getElementById('new_tag_input').value = ''
                             }
@@ -155,7 +155,7 @@ export default function MoreOptions({ addOption, serial, id, deleteItem, changeC
             {isOpen && <div 
             style={{
                 position: 'absolute',
-                left: '200vw'
+                left: '-200vw'
             }}
             ref={printRef}  
             >

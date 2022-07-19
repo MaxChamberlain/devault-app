@@ -67,7 +67,7 @@ export default function UserManager(){
                 color: '#aaa',
                 marginLeft: '50%', 
                 transform: 'translateX(-50%)',
-                width: 'fit-content',
+                width: window.innerWidth > 1080 ? 'fit-content' : '80vw',
                 cursor: 'pointer'
             }}
             onClick={() => copyToClipboard(JSON.parse(localStorage.getItem('_devault:@user_info')).company_code)}
@@ -83,7 +83,8 @@ export default function UserManager(){
                 marginTop: 50,
                 borderRadius: 10,
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, 400px)',
+                gridGap: '32px',
+                gridTemplateColumns: window.innerWidth > 1080 ? 'repeat(auto-fit, 400px)' : 'repeat(auto-fit, 100%)',
             }}>
                 {users.map(user => {
                     return(
@@ -113,7 +114,7 @@ export default function UserManager(){
                                 {user.name}
                             </div>
                             <span style={{
-                                fontSize: 25,
+                                fontSize: window.innerWidth > 1080 ? '1.5rem' : '1rem',
                                 marginTop: 20
                             }}>{user.email}</span>
                             <span style={{

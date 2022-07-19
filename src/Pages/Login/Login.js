@@ -1,5 +1,5 @@
 import './Login.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useLoading from '../../Hooks/useLoading';
 const axios = require('axios');
 
@@ -30,6 +30,9 @@ export default function Login() {
                 >
                     <div 
                         className="main-content-wrapper"
+                        style={{
+                            width: window.innerWidth > 1080 ? 720 : '80vw',
+                        }}
                     >
                         <div className="title-text">Welcome back!</div>
                         <div className="sub-title-text">We're happy you're here!</div>

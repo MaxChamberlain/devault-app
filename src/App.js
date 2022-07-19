@@ -14,24 +14,26 @@ import Home from './Pages/Home/Home';
 
 import UserContext from './contexts/UserContext';
 import TeamContext from './contexts/TeamContext';
+import useLoading from './Hooks/useLoading';
 
 const axios = require('axios');
 
 function App() {
   const [ loggedIn, setLoggedIn ] = useState(false);
+  const setLoading = useLoading
 
   const allowedRoutes = ['/login', '/register', '/'];
 
   const checkToken = async () => {
     try{
-        const { data } = await axios.post(
+      await axios.post(
       process.env.REACT_APP_API_DOMAIN + '/testroutes',
       {},
       { headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('_devault:@user_info')).token}` } }
       )
-      console.log(data)
     }catch(e){
       localStorage.removeItem('_devault:@user_info');
+      setLoading(['error', 'Your login has expired. Please refresh the page.'])
     }
   }
 

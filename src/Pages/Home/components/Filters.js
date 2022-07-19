@@ -18,10 +18,10 @@ export default function Filters({ devices, category, status, setCategory, setSta
                     cursor: "pointer",
                     border: "1px solid #ccc",
                     width: 'fit-content',
+                    maxWidth: 'calc(100% - 50px)',
                     padding: 5,
                     borderRadius: 5,
                     fontSize: 20,
-                    maxWidth: '95vw'
                 }}>
                     <div style={{
                         display: "flex",
