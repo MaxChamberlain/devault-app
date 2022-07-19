@@ -1,14 +1,15 @@
-import { motion } from "framer-motion"
 import { useState, useRef } from "react"
 import Barcode from "react-barcode"
+import DamagedModal from "./DamagedModal"
 import html2canvas from 'html2canvas';
 
 
-export default function MoreOptions({ addOption, serial, id, deleteItem, changeCategory, changingOptions, setChangingOptions }){
+export default function MoreOptions({ damaged, setDamage, addOption, serial, id, deleteItem, changeCategory, changingOptions, setChangingOptions }){
     const [ isOpen, setIsOpen ] = useState(false)
     const [ changingCategory, setChangingCategory ] = useState(false)
     const [ newCategory, setNewCategory ] = useState(null)
     const [ confirm, setConfirm ] = useState(false)
+    const [ settingDamage, setSettingDamage ] = useState(false)
     
     const printRef = useRef();
 
@@ -123,6 +124,38 @@ export default function MoreOptions({ addOption, serial, id, deleteItem, changeC
                 
             </div> 
             }
+
+            {isOpen && <div style={{
+                padding: 5,
+                borderRadius: 5,
+                width: '95%',
+                textAlign: 'center',
+                cursor: 'pointer',
+                backgroundColor: 'rgba(0,0,0,0.2)',
+                margin: 10,
+            }}
+            onClick={() => setChangingOptions(was => !was)}>
+                {isOpen && changingOptions ? 'Stop Changing Tags' : 'Change Tags'}
+            </div>} 
+
+
+            {isOpen && damaged && <div style={{
+                padding: 5,
+                borderRadius: 5,
+                width: '95%',
+                textAlign: 'center',
+                cursor: 'pointer',
+                backgroundColor: 'rgba(0,0,0,0.2)',
+                margin: 5,
+                marginTop: 10,
+            }}
+            onClick={e => setSettingDamage(was => !was)}
+            >
+                Damaged
+            </div> 
+            }
+            {settingDamage && <DamagedModal _id={id} setDamage={setDamage} />}
+
             {isOpen && <div style={{
                 padding: 5,
                 borderRadius: 5,
@@ -138,19 +171,6 @@ export default function MoreOptions({ addOption, serial, id, deleteItem, changeC
                 Download Barcode
             </div> 
             }
-
-            {isOpen && <div style={{
-                padding: 5,
-                borderRadius: 5,
-                width: '95%',
-                textAlign: 'center',
-                cursor: 'pointer',
-                backgroundColor: 'rgba(0,0,0,0.2)',
-                margin: 10,
-            }}
-            onClick={() => setChangingOptions(was => !was)}>
-                {isOpen && changingOptions ? 'Stop Changing Tags' : 'Change Tags'}
-            </div>} 
 
             {isOpen && <div 
             style={{

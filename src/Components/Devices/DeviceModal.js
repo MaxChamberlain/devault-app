@@ -9,6 +9,7 @@ import { context } from "../../contexts/UserContext"
 import CheckOutButton from "../../Pages/Home/components/CheckOutButton"
 import { useState, useContext, useEffect } from "react"
 import useLoading from "../../Hooks/useLoading"
+import DamageDisplay from "../../Pages/Home/components/DamageDisplay"
 import { CSSTransition } from "react-transition-group"
 require('../../App.css')
 const axios = require("axios")
@@ -66,9 +67,10 @@ export default function DeviceModal({ device, getDevices }){
                         <CheckOutButton text='Request' func={() => request(device.serial)} />
                     }
                 </CSSTransition>
+                {device.damage_description && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><DamageDisplay damage={device.damage_description} /></CSSTransition>}
                 <CSSTransition in={checkingOut} unmountOnExit timeout={200} classNames='modal-fade' ><CheckingOutModal serial={checkingOut} checkOut={checkOut} /></CSSTransition>
                 <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><OptionsDisplay id={device._id} removeOption={removeOption} setChangingOptions={setChangingOptions} changingOptions={changingOptions} options={device.options} /></CSSTransition>
-                {perms && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><MoreOptions addOption={addOption} setChangingOptions={setChangingOptions} changingOptions={changingOptions} serial={device.serial} id={device._id} deleteItem={deleteItem} changeCategory={changeCategory} /></CSSTransition>}
+                {perms && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><MoreOptions damage={device.damaged} setDamage={setDamage} addOption={addOption} setChangingOptions={setChangingOptions} changingOptions={changingOptions} serial={device.serial} id={device._id} deleteItem={deleteItem} changeCategory={changeCategory} /></CSSTransition>}
                 <OpenArrow click={setIsOpen} isActive={isOpen} />
             </div>
     )
@@ -198,6 +200,23 @@ export default function DeviceModal({ device, getDevices }){
             await axios.post(
                 process.env.REACT_APP_API_DOMAIN + '/devices/addTag', 
                 { _id, company_code, tag },
+                { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
+            )
+            setLoading(['success', 'Requested!'])
+            getDevices()
+        }catch(err){
+            setLoading(['error', err.response.data.message])
+            console.log(err)
+        }
+    }
+
+    async function setDamage(_id, damage_description){
+        const company_code = JSON.parse(localStorage.getItem('_devault:@user_info')).company_code
+        try{
+            setLoading(['loading', 'Requesting...'])
+            await axios.post(
+                process.env.REACT_APP_API_DOMAIN + '/devices/damaged', 
+                { _id, company_code, damage_description },
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Requested!'])
