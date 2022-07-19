@@ -17,6 +17,7 @@ export default function DeviceModal({ device, getDevices }){
     const setLoading = useLoading()
     const [ isOpen, setIsOpen ] = useState(false)
     const [ checkingOut, setCheckingOut ] = useState(false)
+    const [ changingOptions, setChangingOptions ] = useState(false)
     
     const perms = useContext(context)
 
@@ -66,8 +67,8 @@ export default function DeviceModal({ device, getDevices }){
                     }
                 </CSSTransition>
                 <CSSTransition in={checkingOut} unmountOnExit timeout={200} classNames='modal-fade' ><CheckingOutModal serial={checkingOut} checkOut={checkOut} /></CSSTransition>
-                <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><OptionsDisplay options={device.options} /></CSSTransition>
-                {perms && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><MoreOptions serial={device.serial} id={device._id} deleteItem={deleteItem} changeCategory={changeCategory} /></CSSTransition>}
+                <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><OptionsDisplay id={device._id} removeOption={removeOption} setChangingOptions={setChangingOptions} changingOptions={changingOptions} options={device.options} /></CSSTransition>
+                {perms && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><MoreOptions addOption={addOption} setChangingOptions={setChangingOptions} changingOptions={changingOptions} serial={device.serial} id={device._id} deleteItem={deleteItem} changeCategory={changeCategory} /></CSSTransition>}
                 <OpenArrow click={setIsOpen} isActive={isOpen} />
             </div>
     )
@@ -163,6 +164,40 @@ export default function DeviceModal({ device, getDevices }){
             await axios.post(
                 process.env.REACT_APP_API_DOMAIN + '/devices/changecategory', 
                 { _id, company_code, category },
+                { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
+            )
+            setLoading(['success', 'Requested!'])
+            getDevices()
+        }catch(err){
+            setLoading(['error', err.response.data.message])
+            console.log(err)
+        }
+    }
+
+    async function removeOption(_id, tag){
+        const company_code = JSON.parse(localStorage.getItem('_devault:@user_info')).company_code
+        try{
+            setLoading(['loading', 'Requesting...'])
+            await axios.post(
+                process.env.REACT_APP_API_DOMAIN + '/devices/removeTag', 
+                { _id, company_code, tag },
+                { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
+            )
+            setLoading(['success', 'Requested!'])
+            getDevices()
+        }catch(err){
+            setLoading(['error', err.response.data.message])
+            console.log(err)
+        }
+    }
+
+    async function addOption(_id, tag){
+        const company_code = JSON.parse(localStorage.getItem('_devault:@user_info')).company_code
+        try{
+            setLoading(['loading', 'Requesting...'])
+            await axios.post(
+                process.env.REACT_APP_API_DOMAIN + '/devices/addTag', 
+                { _id, company_code, tag },
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Requested!'])
