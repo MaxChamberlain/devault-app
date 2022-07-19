@@ -44,7 +44,7 @@ export default function InfoCard({ header, body, footer, symbol, top, bgColor, s
                     {width > 800 && symbol}
                     <p style={{
                         color: '#fff',
-                        fontSize: 30,
+                        fontSize: width > 800 ? 30 : 15,
                         marginBottom: 20,
                         flex: 1,
                         border: '1px solid #fff',

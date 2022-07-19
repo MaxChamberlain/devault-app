@@ -18,7 +18,8 @@ export default function Splash(){
     return (
         <div>
             <div style={{
-                width: '100%',
+                right: '10%',
+                left: '10%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
