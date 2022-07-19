@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import MainCard from "./components/MainCard"
 import InfoCard from "./components/InfoCard"
-const logo = require('../../assets/images/lock-512.webp')
+const logo = require('../../assets/images/logo.png')
 
 export default function Splash(){
     const [ scroll, setScroll ] = useState(0)
@@ -28,8 +28,7 @@ export default function Splash(){
             }}>
                 <span style={{fontSize: 40, fontWeight: 'bold'}}>Welcome to DeVault</span>
                 <img src={logo} style={{
-                    filter: 'invert()',
-                    width: 30,
+                    width: 50,
                     marginLeft: 20
                 }} alt='' />
             </div>
