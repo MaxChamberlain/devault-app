@@ -11,6 +11,7 @@ import SplashHeader from './Components/Header/SplashHeader';
 import Header from './Components/Header/Header';
 import UserManager from './Pages/UserManager/UserManager';
 import Home from './Pages/Home/Home';
+import Overview from './Pages/Overview/Overview';
 
 import UserContext from './contexts/UserContext';
 import TeamContext from './contexts/TeamContext';
@@ -69,6 +70,7 @@ function App() {
                   <Route path='/register' element={<Register /> } />
                   <Route path='/users' element={<UserManager /> } />
                   <Route path='/home' element={<Home /> } />
+                  <Route path='/overview' element={<Overview /> } />
                 </Routes>
               </>
               :
