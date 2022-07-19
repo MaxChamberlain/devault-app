@@ -60,7 +60,10 @@ export default function DeviceModal({ device, getDevices }){
                         device.damaged ?
                             <CheckOutButton text='Repair' func={() => repair(device.serial)} /> :
                         device.reserved ?
-                            <CheckOutButton text='Complete Checkout' func={() => setCheckingOut(was => was === device.serial ? null : device.serial)} /> :
+                            <div>
+                                <CheckOutButton text='Complete Checkout' func={() => setCheckingOut(was => was === device.serial ? null : device.serial)} /> 
+                                <CheckOutButton text='Cancel Reservation' func={() => checkIn(device.serial)} />
+                            </div>:
                         device.requested ? <div style={{display: 'flex'}}><CheckOutButton text='Deny' func={() => checkIn(device.serial)} /><CheckOutButton text='Approve' func={() => checkOut(device.serial, device.owner)} /></div> :
                             <CheckOutButton text='Check Out' func={() => setCheckingOut(was => was === device.serial ? null : device.serial)} />)
                         : device.requested && device.owner === JSON.parse(localStorage.getItem('_devault:@user_info')).name ?

@@ -69,7 +69,12 @@ export default function MoreOptions({ damaged, setDamage, addOption, serial, id,
                 }}>
                     <div
                         style={{ height: '100%', width: '50%', backgroundColor: '#ff3838'}}
-                        onClick={() => setIsOpen(was => !was)}
+                        onClick={() => {
+                            setIsOpen(was => !was)
+                            setChangingCategory(false)
+                            setNewCategory(null)
+                            setChangingOptions(false)
+                        }}
                     >
                         Cancel
                     </div>
