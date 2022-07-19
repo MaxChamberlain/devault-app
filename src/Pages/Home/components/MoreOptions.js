@@ -192,7 +192,7 @@ export default function MoreOptions({ damaged, setDamage, addOption, serial, id,
                 margin: 5,
                 marginTop: 10,
             }}
-            onClick={confirm ? () => deleteItem(id) : () => {
+            onClick={confirm ? () => {deleteItem(id); setIsOpen(false)} : () => {
                 setConfirm(3)
                 setTimeout(() => setConfirm(2), 1000)
                 setTimeout(() => setConfirm(1), 2000)

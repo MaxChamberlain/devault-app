@@ -39,7 +39,7 @@ export default function Home(){
         }
         init()
         window.addEventListener('keydown', e => {
-            if(e.key === '|'){
+            if(e.key === '|' || e.key === '\\'){
                 e.preventDefault()
                 e.stopPropagation()
                 setSearching(was => !was)
