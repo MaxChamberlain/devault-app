@@ -2,7 +2,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
@@ -55,6 +55,7 @@ function App() {
     }
   }, [allowedRoutes, location, loggedIn])
 
+
   return (
     <AnimatePresence exitBeforeEnter>
       <UserContext>
@@ -71,6 +72,7 @@ function App() {
                   <Route path='/users' element={<UserManager /> } />
                   <Route path='/home' element={<Home /> } />
                   <Route path='/overview' element={<Overview /> } />
+                  <Route path='*' element={<Home />} />
                 </Routes>
               </>
               :

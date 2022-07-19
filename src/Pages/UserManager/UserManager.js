@@ -56,89 +56,111 @@ export default function UserManager(){
 
     return(
         <div>
-            <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                padding: 20,
-                backgroundColor: '#24262a',
-                borderRadius: 10,
-                marginTop: 90,
-                color: '#aaa',
-                marginLeft: '50%', 
-                transform: 'translateX(-50%)',
-                width: window.innerWidth > 1080 ? 'fit-content' : '80vw',
-                cursor: 'pointer'
-            }}
-            onClick={() => copyToClipboard(JSON.parse(localStorage.getItem('_devault:@user_info')).company_code)}
-            >
+            {userPerms ? 
+                <>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: 20,
+                        backgroundColor: '#24262a',
+                        borderRadius: 10,
+                        marginTop: 90,
+                        color: '#aaa',
+                        marginLeft: '50%', 
+                        transform: 'translateX(-50%)',
+                        width: window.innerWidth > 1080 ? 'fit-content' : '80vw',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => copyToClipboard(JSON.parse(localStorage.getItem('_devault:@user_info')).company_code)}
+                    >
 
-                {copied ? 'Code copied!' : `Your team code: ${JSON.parse(localStorage.getItem('_devault:@user_info')).company_code}`}
-                <img alt='' src={ copied ? require('../../assets/images/checkmark.webp') : require('../../assets/images/copy_icon.png') } style={{ width: 30, height: 30, filter: 'invert()', opacity: 0.7, marginLeft: 50 }} />
-            </div>
-            <div style={{
-                backgroundColor: '#24262a',
-                margin: 20,
-                padding: 32,
-                marginTop: 50,
-                borderRadius: 10,
-                display: 'grid',
-                gridGap: '32px',
-                gridTemplateColumns: window.innerWidth > 1080 ? 'repeat(auto-fit, 400px)' : 'repeat(auto-fit, 100%)',
-            }}>
-                {users.map(user => {
-                    return(
-                        <div style={{
-                            backgroundColor: '#36393f',
-                            padding: 10,
-                            borderRadius: 10,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            position: 'relative',
-                        }}>
-                            <img alt='' src={editing === user._id ? require('../../assets/images/cancel_icon.png') : require('../../assets/images/edit_icon.png')} 
-                            style={{ width: 30, height: 30, filter: 'invert()', position: 'absolute', right: 20, top: 20, cursor: 'pointer' }} 
-                            onClick={() => setEditing(was => was === user._id ? null : user._id)}
-                            />
-                            {editing === user._id && <img alt='' src={require('../../assets/images/checkmark.webp')} 
-                            style={{ width: 30, height: 30, filter: 'invert()', position: 'absolute', left: 20, top: 20, cursor: 'pointer' }} 
-                            onClick={() => handleMakeAdmin(user._id, document.getElementById('isAdmin').checked)}
-                            />}
-                            <div style={{
-                                backgroundColor: '#24262a',
-                                padding: 10,
-                                borderRadius: 10,
-                            }}>
-                                {user.name}
-                            </div>
-                            <span style={{
-                                fontSize: window.innerWidth > 1080 ? '1.5rem' : '1rem',
-                                marginTop: 20
-                            }}>{user.email}</span>
-                            <span style={{
-                                fontSize: 25,
-                                marginTop: 20,
-                                color: '#aaa'
-                            }}>
-                                {userPerms ? 'Admin' : 'Not Admin'} 
-                                {editing === user._id && 
-                                    <input
-                                    type="checkbox"
-                                    id='isAdmin'
-                                    defaultChecked={user.isAdmin}
-                                    style={{
-                                        marginLeft: 10,
-                                        border: 'none',
-                                    }}
+                        {copied ? 'Code copied!' : `Your team code: ${JSON.parse(localStorage.getItem('_devault:@user_info')).company_code}`}
+                        <img alt='' src={ copied ? require('../../assets/images/checkmark.webp') : require('../../assets/images/copy_icon.png') } style={{ width: 30, height: 30, filter: 'invert()', opacity: 0.7, marginLeft: 50 }} />
+                    </div>
+                    <div style={{
+                        backgroundColor: '#24262a',
+                        margin: 20,
+                        padding: 32,
+                        marginTop: 50,
+                        borderRadius: 10,
+                        display: 'grid',
+                        gridGap: '32px',
+                        gridTemplateColumns: window.innerWidth > 1080 ? 'repeat(auto-fit, 400px)' : 'repeat(auto-fit, 100%)',
+                    }}>
+                        {users.map(user => {
+                            return(
+                                <div style={{
+                                    backgroundColor: '#36393f',
+                                    padding: 10,
+                                    borderRadius: 10,
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    position: 'relative',
+                                }}>
+                                    <img alt='' src={editing === user._id ? require('../../assets/images/cancel_icon.png') : require('../../assets/images/edit_icon.png')} 
+                                    style={{ width: 30, height: 30, filter: 'invert()', position: 'absolute', right: 20, top: 20, cursor: 'pointer' }} 
+                                    onClick={() => setEditing(was => was === user._id ? null : user._id)}
                                     />
-                                }
-                                </span>
-                        </div>
-                    )
-                })}
-            </div>
+                                    {editing === user._id && <img alt='' src={require('../../assets/images/checkmark.webp')} 
+                                    style={{ width: 30, height: 30, filter: 'invert()', position: 'absolute', left: 20, top: 20, cursor: 'pointer' }} 
+                                    onClick={() => handleMakeAdmin(user._id, document.getElementById('isAdmin').checked)}
+                                    />}
+                                    <div style={{
+                                        backgroundColor: '#24262a',
+                                        padding: 10,
+                                        borderRadius: 10,
+                                    }}>
+                                        {user.name}
+                                    </div>
+                                    <span style={{
+                                        fontSize: window.innerWidth > 1080 ? '1.5rem' : '1rem',
+                                        marginTop: 20
+                                    }}>{user.email}</span>
+                                    <span style={{
+                                        fontSize: 25,
+                                        marginTop: 20,
+                                        color: '#aaa'
+                                    }}>
+                                        {userPerms ? 'Admin' : 'Not Admin'} 
+                                        {editing === user._id && 
+                                            <input
+                                            type="checkbox"
+                                            id='isAdmin'
+                                            defaultChecked={user.isAdmin}
+                                            style={{
+                                                marginLeft: 10,
+                                                border: 'none',
+                                            }}
+                                            />
+                                        }
+                                        </span>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </>
+            :
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'column',
+                }}>
+                    <h1>You don't have permission to view this page</h1>
+                    <div style={{
+                        padding: 10,
+                        border: '1px solid white',
+                        cursor: 'pointer',
+                        borderRadius: 10,
+                    }}
+                    onClick={() => window.location.href='/home'}>
+                        Back
+                    </div>
+                </div>
+            }
         </div>
     )
 }
