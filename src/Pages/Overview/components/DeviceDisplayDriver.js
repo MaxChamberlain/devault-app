@@ -90,8 +90,8 @@ export default function Overview({ devices }) {
                             position: 'relative'
                         }}>  
                             <div style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fill, 100%)',
+                                display: 'flex',
+                                flexDirection: 'column',
                                 justifyContent: 'space-around',
                                 alignItems: 'center',
                                 padding: 5,
@@ -103,10 +103,9 @@ export default function Overview({ devices }) {
                                 backgroundColor: 'rgba(0,0,0,0.4)',
                             }}>{make}</div>
                             <div style={{
-                                display: 'grid',
-                                gridTemplateColumns: 'repeat(auto-fill, minmax(100%, 500px))',
+                                display: 'flex',
+                                flexDirection: 'column',
                                 justifyContent: 'space-around',
-                                alignItems: 'center',
                                 marginBottom: 0,
                                 margin: 10,
                                 marginTop: 0,
