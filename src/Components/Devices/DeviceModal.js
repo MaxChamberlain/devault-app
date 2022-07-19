@@ -10,6 +10,7 @@ import CheckOutButton from "../../Pages/Home/components/CheckOutButton"
 import { useState, useContext, useEffect } from "react"
 import useLoading from "../../Hooks/useLoading"
 import DamageDisplay from "../../Pages/Home/components/DamageDisplay"
+import ReservingModal from "../../Pages/Home/components/ReservingModal"
 import { CSSTransition } from "react-transition-group"
 require('../../App.css')
 const axios = require("axios")
@@ -19,6 +20,7 @@ export default function DeviceModal({ device, getDevices }){
     const [ isOpen, setIsOpen ] = useState(false)
     const [ checkingOut, setCheckingOut ] = useState(false)
     const [ changingOptions, setChangingOptions ] = useState(false)
+    const [ reserving, setReserving ] = useState(false)
     
     const perms = useContext(context)
 
@@ -67,6 +69,14 @@ export default function DeviceModal({ device, getDevices }){
                         <CheckOutButton text='Request' func={() => request(device.serial)} />
                     }
                 </CSSTransition>
+                {perms && !device.checked_out && !device.damaged && !device.reserved && !device.requested &&
+                    <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' >
+                        <CheckOutButton text={reserving ? 'Cancel' : 'Reserve'} func={() => setReserving(was => was === device.serial ? null : device.serial)} />
+                    </CSSTransition>
+                }
+                {isOpen && <CSSTransition in={reserving} unmountOnExit timeout={300} classNames='modal-scale-opacity' >
+                    <ReservingModal serial={device._id} checkOut={reserve} />
+                </CSSTransition>}
                 {device.damage_description && <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><DamageDisplay damage={device.damage_description} /></CSSTransition>}
                 <CSSTransition in={checkingOut} unmountOnExit timeout={200} classNames='modal-fade' ><CheckingOutModal serial={checkingOut} checkOut={checkOut} /></CSSTransition>
                 <CSSTransition in={isOpen} unmountOnExit timeout={300} classNames='modal-scale-opacity' ><OptionsDisplay id={device._id} removeOption={removeOption} setChangingOptions={setChangingOptions} changingOptions={changingOptions} options={device.options} /></CSSTransition>
@@ -86,6 +96,9 @@ export default function DeviceModal({ device, getDevices }){
             )
             setLoading(['success', 'Checked Out!'])
             setCheckingOut(false)
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             console.log(err)
@@ -102,6 +115,9 @@ export default function DeviceModal({ device, getDevices }){
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Checked In!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             console.log(err)
@@ -118,6 +134,9 @@ export default function DeviceModal({ device, getDevices }){
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Done!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             console.log(err)
@@ -135,6 +154,9 @@ export default function DeviceModal({ device, getDevices }){
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Requested!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             setLoading(['error', err.response.data.message])
@@ -155,6 +177,7 @@ export default function DeviceModal({ device, getDevices }){
             getDevices()
         }catch(err){
             setLoading(['error', err.response.data.message])
+            setIsOpen(false)
             console.log(err)
         }
     }
@@ -169,6 +192,9 @@ export default function DeviceModal({ device, getDevices }){
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Requested!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             setLoading(['error', err.response.data.message])
@@ -186,6 +212,9 @@ export default function DeviceModal({ device, getDevices }){
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Requested!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             setLoading(['error', err.response.data.message])
@@ -203,6 +232,9 @@ export default function DeviceModal({ device, getDevices }){
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Requested!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             setLoading(['error', err.response.data.message])
@@ -215,11 +247,34 @@ export default function DeviceModal({ device, getDevices }){
         try{
             setLoading(['loading', 'Requesting...'])
             await axios.post(
-                process.env.REACT_APP_API_DOMAIN + '/devices/damaged', 
+                process.env.REACT_APP_API_DOMAIN + '/devices/reserve', 
                 { _id, company_code, damage_description },
                 { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
             )
             setLoading(['success', 'Requested!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
+            getDevices()
+        }catch(err){
+            setLoading(['error', err.response.data.message])
+            console.log(err)
+        }
+    }
+
+    async function reserve(_id, owner){
+        const company_code = JSON.parse(localStorage.getItem('_devault:@user_info')).company_code
+        try{
+            setLoading(['loading', 'Requesting...'])
+            await axios.post(
+                process.env.REACT_APP_API_DOMAIN + '/devices/reserve', 
+                { _id, owner, company_code },
+                { headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` } }
+            )
+            setLoading(['success', 'Requested!'])
+            setIsOpen(false)
+            setChangingOptions(false)
+            setReserving(false)
             getDevices()
         }catch(err){
             setLoading(['error', err.response.data.message])

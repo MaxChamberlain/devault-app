@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 export default function Header() {
     return (
         <div style={{
-            position: 'absolute',
+            position: 'fixed',
             top: 0,
             left: 0,
             right: 0,
