@@ -1,7 +1,12 @@
 import DeviceModal from "../../../Components/Devices/DeviceModal"
 import { CSSTransition } from "react-transition-group";
 
-export default function DeviceDisplayDriver({ devices, category, status, make, serial, getDevices }){
+export default function DeviceDisplayDriver({ devices, category, status, make, serial, getDevices, model, owner }){
+
+    devices.forEach(e => {
+        if(!e.owner) return e.owner = 'No Owner'
+        if(e.owner.trim() === '') e.owner = 'No Owner'
+    })
 
     return(
         <div style={{
@@ -42,6 +47,8 @@ export default function DeviceDisplayDriver({ devices, category, status, make, s
                     if(a.model > b.model) return 1;
                     return 0;
                 })
+                .filter(e => e.model === model || model === 'All')
+                .filter(e => e.owner === owner || owner === 'All')
                 .map((device, index) => {
                     return <CSSTransition in={devices} timeout={200} classNames="modal-fade">
                     <DeviceModal device={device} getDevices={getDevices} />

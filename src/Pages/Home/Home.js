@@ -13,6 +13,8 @@ export default function Home(){
     const [ category, setCategory ] = useState('All');
     const [ status, setStatus ] = useState('All');
     const [ make, setMake ] = useState('All');
+    const [ model, setModel ] = useState('All');
+    const [ owner, setOwner ] = useState('All');
     const [ serial, setSerial ] = useState(null);
     const [ searching, setSearching ] = useState(false);
     const [ width, setWidth ] = useState(window.innerWidth);
@@ -60,13 +62,13 @@ export default function Home(){
         }}>
             {devices.length > 0 && devices !== 'loading' ? 
                 <>
-                    <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-start', maxWidth: '50vw' }}>
                         <SearchBar serial={serial} setSerial={setSerial} searching={searching} setSearching={setSearching} />
                         <Refresh click={getDevices} />
-                        {window.innerWidth > 1080 && <Filters devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />}
+                        {window.innerWidth > 1080 && <Filters model={model} setModel={setModel} owner={owner} setOwner={setOwner} devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />}
                     </div>
-                    {window.innerWidth < 1080 && <Filters devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />}
-                    <DeviceDisplayDriver devices={devices} category={category} status={status} serial={serial} getDevices={getDevices} make={make} />
+                    {window.innerWidth < 1080 && <Filters model={model} setModel={setModel} owner={owner} setOwner={setOwner} devices={devices} category={category} status={status} setCategory={setCategory} setStatus={setStatus} make={make} setMake={setMake} />}
+                    <DeviceDisplayDriver devices={devices} category={category} status={status} serial={serial} getDevices={getDevices} make={make} owner={owner} model={model} />
                 </>
                 : devices !== 'loading' ?
                 <div>

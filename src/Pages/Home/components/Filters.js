@@ -1,11 +1,13 @@
 import CategorySelect from "./CategorySelect";
 import StatusSelect from "./StatusSelect";
 import MakeSelect from "./MakeSelect";
+import ModelSelect from "./ModelSelect";
+import OwnerSelect from "./OwnerSelect";
 import { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 const filter_icon = require("../../../assets/images/filter_icon.png");
 
-export default function Filters({ devices, category, status, setCategory, setStatus, make, setMake }){
+export default function Filters({ devices, category, status, setCategory, setStatus, make, setMake, model, setModel, owner, setOwner }){
     const [ show, setShow ] = useState(false);
     return(
             <div>
@@ -56,6 +58,8 @@ export default function Filters({ devices, category, status, setCategory, setSta
                             <CategorySelect devices={devices} currCategory={category} setCategory={setCategory} />
                             <StatusSelect devices={devices} currStatus={status} setStatus={setStatus} />
                             <MakeSelect devices={devices} currMake={make} setMake={setMake} />
+                            <ModelSelect devices={devices} currModel={model} setModel={setModel} />
+                            <OwnerSelect devices={devices} currOwner={owner} setOwner={setOwner} />
                         </div>
                         </CSSTransition>
                 </div>
