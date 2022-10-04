@@ -124,7 +124,7 @@ export default function UserManager(){
                                         marginTop: 20,
                                         color: '#aaa'
                                     }}>
-                                        {userPerms ? 'Admin' : 'Not Admin'} 
+                                        {user.isAdmin ? 'Admin' : 'Not Admin'} 
                                         {editing === user._id && 
                                             <input
                                             type="checkbox"

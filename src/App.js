@@ -25,24 +25,9 @@ function App() {
 
   const allowedRoutes = ['/login', '/register', '/'];
 
-  const checkToken = async () => {
-    try{
-      await axios.post(
-      process.env.REACT_APP_API_DOMAIN + '/testroutes',
-      {},
-      { headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem('_devault:@user_info')).token}` } }
-      )
-    }catch(e){
-      localStorage.removeItem('_devault:@user_info');
-      setLoading(['error', 'Your login has expired. Please refresh the page.'])
-    }
-  }
-
   const location = useLocation();
 
   useEffect(() => {
-
-    checkToken()
 
     if(localStorage.getItem('_devault:@user_info')){
       setLoggedIn(true);
